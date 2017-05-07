@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+  		/*reset start*/
+  		html,body{overflow: hidden;height:100%;}
+  		body,h1,h2,h3,h4,p,ul,ol,div{padding:0;margin:0;font:14px "微软雅黑";}
+  		li{list-style:none;}
+  		a{text-decoration: none}
+  		img{border:none;}
+  		a:active{color:#009ee0;}
+  		/*reset end*/
+
+  		/*common start*/
+  		.clear{zoom:1;}
+  		.clear:after{content:"";display:block;clear:both}
+  		/*common end*/
+
+  		/*frame start*/
+  		#main{width:100%;height:100%;}
+  		#header{width:100%;height:80px;}
+  		#headerMain{width:1100px;height:100%;margin:0 auto;position:relative;}
+  		#logo{float:left;margin-top:30px;}
+  		#music{width:14px;height:14px;background:url(img/musicoff.gif) no-repeat;position:absolute;left:196px;top:46px;}
+  		#nav{float:right;margin-top:50px;}
+  		#nav li{float:left;position:relative;margin-left:40px;}
+  		#nav li .up{position:absolute;left:0;top:0;color:black;width:0%;overflow:hidden;transition:.5s}
+  		#nav li:hover .up{width:100%;}
+  		#content{width:100%;position:relative;overflow:hidden;}
+  		#contentBtn{position:fixed;top:50%;right:10px;z-index:20;}
+  		#contentBtn li{width:10px;height:10px;border-radius: 50%;border:1px solid #fff;margin-bottom:10px;cursor: pointer;}
+  		#contentBtn .active{background:#fff;}
+  		#list{width:100%;position:absolute;left:0;top:0;transition:.5s top;}
+  		#list .liList{width:2000px;position:relative;left:50%;margin-left:-1000px;overflow:hidden;}
+  		#list .divList{width:1100px;height:520px;margin:0 auto;position:relative;}
+
+  		/*commen*/
+  		.commonTitle{color:#009ee0;font-size:80px;font-weight: bold;letter-spacing:-5px;line-height: 0.8 }
+  		.commonText{color:#fff;font-size:15px;line-height:1.5;}
+
+  		#home{ background:url(img/bg1.jpg) no-repeat;}
+  		#homeContent .homeContent1{width:100%;height:100%;position:relative; perspective:800px; transform-style:preserve-3d; -webkit-perspective:800px; -webkit-transform-style:preserve-3d;transition:1s;}
+  		#homeContent .homeContent1 li{width:100%;height:100%;position:absolute;top:0;left:0;background:black;visibility: hidden;}
+  		#homeContent .homeContent1 li.active{ z-index:1; visibility:visible;}
+  		#homeContent .homeContent1 li:nth-of-type(1){background:#dc6c5f;}
+  		#homeContent .homeContent1 li:nth-of-type(2){background:#95dc84}
+  		#homeContent .homeContent1 li:nth-of-type(3){background:#64b9d2;}
+  		#homeContent .homeContent1 li h1{color:white;text-align: center;padding-top:200px;}
+  		#homeContent .homeContent1 li.active{ z-index:1; visibility:visible;}
+
+  		#homeContent .homeContent1 .leftShow{ animation:1s homeLeftShow; visibility:visible; z-index:3;-webkit-animation:1s homeLeftShow;}
+		#homeContent .homeContent1 .rightHide{ animation:1s homeRightHide; visibility:hidden; -webkit-animation:1s homeRightHide;}
+
+
+		#homeContent .homeContent1 .leftHide{ animation:1s homeLeftHide; visibility:hidden; -webkit-animation:1s homeLeftHide;}
+		#homeContent .homeContent1 .rightShow{ animation:1s homeRightShow; visibility:visible; z-index:3; -webkit-animation:1s homeRightShow;}
+		@keyframes homeLeftHide{
+			0%{ transform:translateZ(0px); visibility:visible;}
+			40%{ transform:translate(-40%,0) scale(0.8) rotateY(20deg);}
+			100%{ transform:translateZ(-200px);}
+		}
+		@keyframes homeRightShow{
+			0%{ transform:translateZ(-200px);}
+			40%{ transform:translate(40%,0) scale(0.8) rotateY(-20deg);}
+			100%{ transform:translateZ(0px);}
+		}
+
+		@-webkit-keyframes homeLeftHide{
+			0%{ -webkit-transform:translateZ(0px); visibility:visible;}
+			40%{ -webkit-transform:translate(-40%,0) scale(0.8) rotateY(20deg);}
+			100%{ -webkit-transform:translateZ(-200px);}
+		}
+		@-webkit-keyframes homeRightShow{
+			0%{ -webkit-transform:translateZ(-200px);}
+			40%{ -webkit-transform:translate(40%,0) scale(0.8) rotateY(-20deg);}
+			100%{ -webkit-transform:translateZ(0px);}
+		}
+
+		@keyframes homeLeftShow{
+			0%{ transform:translateZ(-200px);}
+			40%{ transform:translate(-40%,0) scale(0.8) rotateY(20deg);}
+			100%{ transform:translateZ(0px);}
+		}
+		@keyframes homeRightHide{
+			0%{ transform:translateZ(0px); visibility:visible;}
+			40%{ transform:translate(40%,0) scale(0.8) rotateY(-20deg);}
+			100%{ transform:translateZ(-200px);}
+		}
+		@-webkit-keyframes homeLeftShow{
+			0%{ -webkit-transform:translateZ(-200px);}
+			40%{ -webkit-transform:translate(-40%,0) scale(0.8) rotateY(20deg);}
+			100%{ -webkit-transform:translateZ(0px);}
+		}
+		@-webkit-keyframes homeRightHide{
+			0%{ -webkit-transform:translateZ(0px); visibility:visible;}
+			40%{ -webkit-transform:translate(40%,0) scale(0.8) rotateY(-20deg);}
+			100%{ -webkit-transform:translateZ(-200px);}
+		}
+
+		#homeContent .homeContent2{width:100%;position:absolute;bottom:0;text-align:center;z-index:4;transition:1s;}
+		#homeContent .homeContent2 li{width:20px;height:20px;border-radius: 50%;background:rgba(255,255,255,0.5);display:inline-block;margin:2px;box-shadow: 0 0 4px rgba(25,25,25,0.8);cursor:pointer;}
+		#homeContent .homeContent2 li.active{background:rgba(255,255,255,1);}
+
+  		#course{background:url(img/bg3.jpg) no-repeat;}
+  		#course .courseContent1{padding:50px 0 50px 50px;position:relative;z-index:3;}
+  		#course .courseContent2{width:400px;padding-left:50px;position:relative;z-index:3;}
+  		#course .courseContent3{ width:480px; position:absolute; right:50px; top:70px;z-index:3;}
+		#course .courseLine{ width:9px; height:410px; background:url(img/plus_row.png) no-repeat; position:absolute; left:0; top:0; margin-top:-5px; margin-left:-5px;}
+  		#course .courseLogo{width:120px;height:133px;float:left;position:relative;margin-top:1px;cursor:pointer;perspective:800px;-webkit-perspective:800px;}
+  		#course .courseBefore{width:100%;height:100%;position:absolute;left:0;top:0;background-repeat: no-repeat;background-position:center center;backface-visibility:hidden; -webkit-backface-visibility:hidden;transition:1s; }
+  		#course .courseAfter{width:100%;height:100%;position:absolute;left:0;top:0;background: #009ee0;color:white;padding:15px;text-indent: 2em;box-sizing:border-box;transform:rotateY
+  			(-180deg);-webkit-transform:rotateY(-180deg);transition:1s;-webkit-backface-visibility:hidden;backface-visibility:hidden;}
+  		#course .courseLogo:hover .courseBefore{trasform:rotateY(180deg);-webkit-transform:rotateY(180deg);}
+  		#course .courseLogo:hover .courseAfter{trasform:rotateY(0);-webkit-transform:rotateY(0);}
+  		#plane1{width:359px;height:283px;background:url(img/plane1.png);position:absolute;top:-105px;left:300px;transition:1s;}
+  		#plane2{width:309px;height:249px;background:url(img/plane2.png);position:absolute;left:-104px;top:220px;transition:1s;}
+  		#plane3{width:232px;height:182px;background:url(img/plane3.png);position:absolute;top:380px;left:320px;transition:1s;}
+  		#works{ background:url(img/bg4.jpg) no-repeat;}
+  		#works .worksContent1{padding:50px 0 100px 50px;position:relative;z-index:3;}
+  		#works .worksContent2{padding-left:50px;}
+  		#works .worksContent3{width:480px;position:absolute;z-index:3;}
+  		#works .worksImgParent{width:220px;height:133px;float:left;position:relative;overflow:hidden;margin:0 1px;z-index:3;}
+  		#works .worksImgParent:last-of-type{width:332px;}
+  		#works .worksImg{transition:.5s}
+  		#works .worksImgMark{width:100%;height:100%;position:absolute;left:0;top:0;background:rgba(25,25,25,0.8);color:white;padding:15px;box-sizing:border-box;opacity:0;transition:.5s;}
+  		#works .worksImgMark div{width:32px;height:34px;background:url(img/zoomico.png) no-repeat;margin:10px auto;cursor:pointer;transition:.5s;}
+ 		#works .worksImgParent:hover .worksImgMark{opacity: 1}
+  		#works .worksImgMark div:hover{background-position:0 -36px}
+  		#works .worksImgParent:hover .worksImg{transform:scale(1.5) rotate(20deg);}
+  		#works .worksContent3{width:167px; height:191px; background:url(img/robot.png) no-repeat; position:absolute; left:900px; top:170px;animation:10s linear infinite worksMove;-webkit-animation:10s linear infinite worksMove;}
+  		@keyframes worksMove{
+  			0%{}
+  			49%{transform:rotateY(0deg);}
+  			50%{left:450px;transform:rotateY(180deg);}
+  			100%{transform:rotateY(180deg);}
+  		}
+  		@-webkit-keyframes worksMove{
+  			0%{}
+  			49%{transform:rotateY(0deg);}
+  			50%{left:450px;transform:rotateY(180deg);}
+  			100%{-webkit-transform:rotateY(180deg);}
+  		}
+  		#pencel1{width:180px;height:79px;background:url(img/pencel1.png) no-repeat;position:absolute;left:486px;top:-5px;transition:1s;}
+  		#pencel2{width:268px;height:38px;background:url(img/pencel2.png) no-repeat;position:absolute;left:300px;top:240px;transition:1s;}
+  		#pencel3{width:441px;height:231px;background:url(img/pencel3.png) no-repeat;position:absolute;left:642px;top:290px;transition:1s;}
+  		#about{background:url(img/bg5.jpg) no-repeat;}
+  		#about .aboutLine{width:357px;height:998px;background:url(img/greenLine.png) no-repeat;position:absolute; left:50%; top:0;}
+  		#about .aboutContent1{padding:50px 0 100px 50px;}
+  		#about .aboutContent2{width:400px;height:160px;line-height:1.5;padding-left:50px;}
+  		#about .aboutContent3{width:410px;height:440px;position:absolute;right:70px;top:50px;z-index:5;}
+  		#about .aboutImg{width:260px;height:200px;border:5px solid #ccc;border-radius: 5px
+  			;overflow:hidden;position:relative;transition:1s;}
+  		#about .aboutImg ul{width:100%;height:100%;}
+  		#about .aboutImg ul li{overflow: hidden;float:left;position:relative;}
+  		#about .aboutImg:nth-of-type(1){margin-left:130px;margin-bottom:30px;}
+  		#about .aboutImg:nth-of-type(1) div{width:100%;height:100%;position:absolute;left:0;top:0;}
+  		#about .aboutImg:nth-of-type(2) div{width:100%;height:100%;position:absolute;left:0;top:0;}
+  		#about .aboutImg .divImg{transform:scale(1.5);-webkit-transform:scale(1.5);transition:.5s;}
+  		#about .aboutImg img{transition:1s;}
+  		#team{background:url(img/bg2.jpg) no-repeat;}
+  		#teamContent .teamContent1{padding:50px 0 50px 50px; float:left;transition:1s;}
+  		#teamContent .teamContent2{width:390px;height:176px;float:right;padding-right:60px;padding-top:50px;transition:1s;}
+  		#teamContent .teamContent3{width:944px;height:448px;position:absolute;top:220px;left:50px;}
+  		#teamContent .teamContent3 ul{width:100%;height:100%;}
+  		#teamContent .teamContent3 ul li{width:118px;height:448px;background:url(img/team.png) no-repeat;float:left;cursor:pointer;}
+  		#teamCanvas{width:100px;height:300px;position:absolute;left:0;bottom:100px;}
+  	
+  		#loading div{width:100%;height:50%;background:#009ee0;position:absolute;z-index:50;transition:1s;}
+  		#loading div:nth-of-type(1){top:0;left:0;}
+  		#loading div:nth-of-type(2){left:0;bottom:0;}
+  		#loading span{width:0%;height:4px;background:#fff;position: absolute;left:0;top:50%;margin-top:-2px;z-index:60;transition:.5s;}
+  </style>
+  <script type="text/javascript">
+  		window.onload = function (){
+  			var oHeader = $('header');
+  			var oNav = $('nav');
+  			var oList= $('list');
+  			var oContent = $("content"); 
+  			var aLiNav = oNav.getElementsByTagName("li");
+  		    var aLiList = getByClass( oList , 'liList' );
+			var aDivList = getByClass( oList , 'divList' );
+			var oContentBtn =$("contentBtn");
+			var oHomeContent = $("homeContent")
+			var oHomeContent1 = getByClass(oHomeContent,"homeContent1")[0];
+			var oHomeContent2 = getByClass(oHomeContent,"homeContent2")[0];
+			var oCourseContent = $("courseContent");
+			var oCourseContent1 = getByClass(oCourseContent,"courseContent1")[0];
+			var oCourseContent3 = getByClass(oCourseContent,"courseContent3")[0]
+			var oPlane1 = $("plane1");
+			var oPlane2 = $("plane2");
+			var oPlane3 = $("plane3");
+			var oAboutContent = $("aboutContent");
+			var oAboutContent3 = getByClass(oAboutContent,"aboutContent3")[0]
+			var oPencel1 = $("pencel1");
+			var oPencel2 = $("pencel2");
+			var oPencel3 = $("pencel3")
+			var oTeamContent = $("teamContent");
+			var oTeamContent3 = getByClass(oTeamContent,"teamContent3")[0];
+			var oLoading = $('loading');
+			var oAudio = $('audio1');
+			var oMusic = $('music');
+  			var iContentHeight = 0
+  			var iNow=0
+  			var prevIndex = 0
+  			contentAuto();
+  			bindNav()
+  			listContentAuto()
+  			contentBtn()
+  			mouseWheel()
+  			homeContent();
+  			courseContent();
+  			aboutContent()
+  			teamContent();
+  			showLoading();
+  			showMusic();
+  			window.onresize = fnResize;
+  			function fnResize(){
+  				contentAuto();
+  				listContentAuto()
+  			};
+  			function showLoading(){
+  				var oSpan = oLoading.getElementsByTagName("span")[0];
+  				var aDiv = oLoading.getElementsByTagName("div");
+  				var arr = ['bg1.jpg','bg2.jpg','bg3.jpg','bg4.jpg','bg5.jpg','about1.jpg','about2.jpg','about3.jpg','about4.jpg','worksimg1.jpg','worksimg2.jpg','worksimg3.jpg','worksimg4.jpg','team.png','greenLine.png'];
+  				var num = 0
+  				for(var i=0;i<arr.length;i++){
+  					var oImg = new Image();
+  					oImg.src = "img/"+arr[i]; 
+  					oImg.onload = function(){
+  						num++;
+  						if(num == arr.length){
+  							oSpan.style.width = "100%"
+  						}
+  					} 				
+  				}
+  				// if(num > arr.length){
+  				// 	oSpan.style.width = "100%"
+  				// }
+  				oSpan.addEventListener("webkitTransitionEnd",spanChange,false)
+  				oSpan.addEventListener("transitionend",spanChange,false);
+  				function spanChange(){
+  					oSpan.style.display = "none";
+  					aDiv[0].style.height = 0;
+  					aDiv[1].style.height = 0
+  				}
+  				aDiv[0].addEventListener("webkitTransitionEnd",divChange,false)
+  				aDiv[0].addEventListener("transitionEnd",divChange,false);
+  				function divChange(){
+  					oLoading.parentNode.removeChild(oLoading);
+  					cjAnimate[0].inAn()
+  					oMusic.onclick()
+  				}
+  			}
+  			function showMusic(){
+  				var onOff = true;
+  				oMusic.onclick = function(){
+	  				if(onOff){
+	  					this.style.background = 'url(img/musicon.gif)';
+	  					oAudio.play();
+	  					onOff = false
+	  				}else{
+	  					this.style.background="url(img/musicoff.gif)";
+	  					oAudio.pause();
+	  					onOff = true;
+	  				}
+	  			}
+  			}
+	  		function contentAuto(){
+	  			iContentHeight=viewHeight()-oHeader.offsetHeight;
+	  			oContent.style.height = iContentHeight + "px";
+	  			for(var i=0;i<aLiList.length;i++){
+	  				aLiList[i].style.height = iContentHeight+"px";
+	  			}
+	  			oList.style.top = -iNow*iContentHeight + "px"
+	  		}
+
+
+	  		function bindNav(){
+	  			var oDiv = aLiNav[0].getElementsByTagName("div")[0]
+	  			oDiv.style.width = "100%";
+	  			for(var i=0;i<aLiNav.length;i++){
+	  				aLiNav[i].index = i;
+	  				aLiNav[i].onmousedown = function(){
+
+	  					iNow = this.index;
+	  					toMove(this.index);
+	  				}
+	  			}
+	  		}
+	  		function toMove(index){
+	  			for(var i=0;i<aLiNav.length;i++){
+	  				var oDiv = aLiNav[i].getElementsByTagName("div")[0];
+	  				oDiv.style.width="";
+	  			}
+	  			var aLi = oContentBtn.getElementsByTagName("li");
+	  			for(var i=0;i<aLi.length;i++){
+	  				aLi[i].className="";
+	  			}
+	  			aLi[index].className="active";
+	  			var oDiv = aLiNav[index].getElementsByTagName("div")[0];
+	  			oDiv.style.width="100%"
+	  			oList.style.top = -iNow*iContentHeight + "px";
+	  			if(iNow == prevIndex) return;
+	  			if(cjAnimate[iNow].inAn){
+	  				cjAnimate[iNow].inAn()
+	  			}
+	  			if(cjAnimate[prevIndex].outAn){
+	  				cjAnimate[prevIndex].outAn()
+	  				
+	  			}
+	  			prevIndex = iNow;
+
+	  		}
+	  		function listContentAuto(){
+	  			var mt = (iContentHeight - 520)/2
+	  			for(var i=0;i<aDivList.length;i++){
+	  				aDivList[i].style.marginTop = mt+"px";
+	  			}
+	  		}
+	  		function contentBtn(){
+	  			var aLi = oContentBtn.getElementsByTagName("li");
+	  			for(var i=0;i<aLi.length;i++){
+	  				aLi[i].index = i;
+	  				aLi[i].onclick = function(){
+	  					iNow = this.index;
+	  					toMove(iNow);
+	  				}
+	  			}
+	  		}
+	  		function homeContent(){
+	  			var aLi1 = oHomeContent1.getElementsByTagName("li")
+	  			var aLi2 = oHomeContent2.getElementsByTagName("li");
+	  			var oldIndex = 0
+	  			for(var i=0;i<aLi2.length;i++){
+	  				aLi2[i].index = i;
+	  				aLi2[i].onclick = function(){
+	  					iNow = this.index
+	  					for(var i=0;i<aLi2.length;i++){
+
+	  						aLi2[i].className="";
+	  					}
+	  					this.className="active";
+	  					if(oldIndex < this.index){
+	  						aLi1[oldIndex].className="leftHide";
+	  						aLi1[this.index].className="rightShow";
+	  					}else if(oldIndex > this.index){
+	  						aLi1[oldIndex].className="rightHide";
+	  						aLi1[this.index].className="leftShow"
+	  					}
+	  					oldIndex = this.index
+	  				}
+	  			}
+	  		
+	  			var timer =setInterval(change,3000);
+	  			oHomeContent.onmouseover = function(){
+	  				clearInterval(timer);
+	  			}
+	  			function change(){
+	  				iNow++;
+	  				if(iNow == aLi1.length){
+	  					iNow = 0
+	  				}
+	  				for(var i=0;i<aLi2.length;i++){
+	  					aLi2[i].className=""
+	  				}
+	  				aLi2[iNow].className="active"
+	  				aLi1[iNow].className="rightShow";
+	  				aLi1[oldIndex].className="leftHide"
+	  				oldIndex = iNow;
+	  			}
+	  		};
+	  		function courseContent(){
+	  			var data = [
+	  				{img:'img/binoli.png',text:"测试文字"},
+	  				{img:'img/bks.png',text:"测试文字"},
+	  				{img:'img/gu.png',text:"测试文字"},
+	  				{img:'img/hlx.png',text:"测试文字"},
+	  				{img:'img/binoli.png',text:"测试文字"},
+	  				{img:'img/binoli.png',text:"测试文字"},
+	  				{img:'img/binoli.png',text:"测试文字"},
+	  				{img:'img/binoli.png',text:"测试文字"},
+	  				{img:'img/binoli.png',text:"测试文字"},
+	  				{img:'img/binoli.png',text:"测试文字"},
+	  				{img:'img/binoli.png',text:"测试文字"},
+	  				{img:'img/binoli.png',text:"测试文字"}
+	  			]
+	  			create()
+	  			function create(){
+
+	  				for(var i=0;i<5;i++){
+	  					var oLine = document.createElement("div")
+	  					oLine.className="courseLine";
+	  					oLine.style.left = i*120 + "px";
+	  					oCourseContent3.appendChild(oLine)
+	  				}
+	  				for(var i=0;i<data.length;i++){
+	  					var oDiv = document.createElement("div");
+	  					oDiv.className="courseLogo";
+	  					oDiv.innerHTML = '<div class="courseBefore" style="background-image:url('+data[i].img+');"></div><div class="courseAfter">'+data[i].text+'</div>'
+	  					oCourseContent3.appendChild(oDiv)
+	  				}
+	  			}
+
+	  		}
+	  		function aboutContent(){
+	  			var aUl = oAboutContent3.getElementsByTagName("ul");
+	  			var aDivImg = getByClass(oAboutContent3,"divImg");
+	  			for(var i=0;i<aUl.length;i++){
+	  				change(aUl[i],aDivImg[i]);
+	  			}
+	  			function change(ul,div){
+	  				var w = ul.offsetWidth/2;
+	  				var h = ul.offsetHeight/2;
+	  				var src = ul.dataset.src;
+	  				var aLi = ul.getElementsByTagName("li");
+	  				var oldData = null
+	  				for(var i=0; i<aLi.length;i++){
+	  					var oImg = document.createElement("img");
+	  					aLi[i].style.width=w+"px";
+	  					aLi[i].style.height = h+"px";
+	  					oImg.src = src;
+	  					oImg.style.left = -i%2*w+"px";
+	  					oImg.style.top = -Math.floor(i/2)*h+"px";
+	  					oImg.oldleft = -i%2*w+"px";
+	  					oImg.oldtop = -Math.floor(i/2)*h+"px";
+	  					oImg.style.position="absolute"
+	  					aLi[i].appendChild(oImg);
+	  				}
+	  				var data = [
+		  				{name:"top",value:h},
+		  				{name:"left",value:-w*2},
+		  				{name:"left",value:w},
+		  				{name:"top",value:-h*2}
+	  				]
+	  				var aImg = ul.getElementsByTagName("img");
+	 
+	  				ul.onmouseover = function(){
+	  					for(var i=0;i<aImg.length;i++){
+	  						aImg[i].style[data[i].name]= data[i].value + "px"
+	  					}
+
+	  					setStyle(div,'transform','scale(1)')
+	  				}
+	  				ul.onmouseout = function(){
+	  					for(var i=0;i<aImg.length;i++){
+	  						aImg[i].style[data[i].name] = aImg[i]["old"+data[i].name];
+	  					}
+	  					setStyle(div,'transform',"scale(1.5)")
+	  				}
+	  			}
+	  		}
+	  		function teamContent(){
+	  			var aLi = oTeamContent3.getElementsByTagName("li");
+	  			var oC = null;
+	  			var w = 118;
+	  			var h=300
+	  			var timer1 = null;
+	  			var timer2  = null;
+	  			create();
+	  			bindList()
+	  			function create(){
+	  				var oUl = document.createElement("ul");
+	  				for(var i=0;i<8;i++){
+	  					var oLi = document.createElement("li");
+	  					oLi.style.backgroundPosition = -(i*w) + "px 0"
+	  					oUl.appendChild(oLi);
+	  				}
+
+	  				oTeamContent3.appendChild(oUl);
+	  			}
+	  			function bindList(){
+	  				for(var i=0;i<aLi.length;i++){
+	  					aLi[i].index = i
+	  					aLi[i].onmouseover = function(){
+	  						addCanvas();
+	  						oC.style.left = this.index * w + "px";
+	  						for(var i=0;i<aLi.length;i++){
+	  							aLi[i].style.opacity="0.5";
+	  						}
+	  						this.style.opacity = 1
+	  					}
+	  				}
+	  				oTeamContent3.onmouseleave = function(){
+	  					removeCanvas();
+	  					for(var i=0;i<aLi.length;i++){
+	  						aLi[i].style.opacity = 1
+	  					}
+	  				}
+	  				aLi[5].style.width="98px";
+	  				aLi[6].style.width="138px"
+	  				aLi[6].style.backgroundPosition="-691px 0"
+	  			}
+	  			function addCanvas(){
+	  				if(!oC){
+	  					oC = document.createElement("canvas");
+	  					oC.id="teamCanvas";
+	  					oC.width = w;
+	  					oC.height=h;
+	  					oTeamContent3.appendChild(oC);
+	  					bindCanvas();
+	  				}
+	  			}
+	  			function removeCanvas(){
+	  				clearInterval(timer1);
+	  				clearInterval(timer2);
+	  				oTeamContent3.removeChild(oC);
+	  				oC =null;
+	  			}
+
+	  			function bindCanvas(){
+
+	  				var oGc = oC.getContext('2d');
+	  				var setArr = [];
+	  				timer1 = setInterval(function(){
+	  					oGc.clearRect(0,0,oC.width,oC.height);
+	  					for(var i=0;i<setArr.length;i++){
+	  						setArr[i].num += 5;
+	  						setArr[i].x = setArr[i].startX - Math.sin(setArr[i].num*Math.PI/180)*setArr[i].step;
+	  						setArr[i].y = setArr[i].startY - (setArr[i].num*Math.PI/180)*setArr[i].step;
+	  						if(setArr[i].y<50){
+	  							setArr.splice(i,1);
+	  						}
+	  					}
+	  						for (var i=0;i<setArr.length;i++){
+	  							oGc.fillStyle ="rgba("+setArr[i].c1+","+setArr[i].c2+","+setArr[i].c3+","+setArr[i].c4+")"
+	  							oGc.beginPath();
+	  								oGc.moveTo(setArr[i].x,setArr[i].y);
+	  								oGc.arc(setArr[i].x,setArr[i].y,setArr[i].r,0,360*Math.PI/180)
+	  							oGc.closePath();
+	  							oGc.fill();
+	  						}
+	  					
+	  				},1000/60)
+	  				timer2 = setInterval(function(){
+	  					var x = Math.random()*oC.width;
+	  					var y = oC.height - 10;
+	  					var r = Math.random()*6+2;
+	  					var c1 = Math.round(Math.random()*255);
+	  					var c2 = Math.round(Math.random()*255);
+	  					var c3 = Math.round(Math.random()*255);
+	  					var c4 = 1;
+	  					var num = 0;
+	  					var step = Math.random()*20 + 10;
+	  					var startX = x;
+	  					var startY = y;
+	  					setArr.push({
+	  						x:x,
+	  						y:y,
+	  						r:r,
+	  						c1:c1,
+	  						c2:c2,
+	  						c3:c3,
+	  						c4:c4,
+	  						num:num,
+	  						step:step,
+	  						startX : x,
+	  						startY :y
+	  					})
+	  				},100)
+	  			}
+	  		}
+	  		var cjAnimate = [
+	  			{
+	  				inAn : function(){
+	  					oHomeContent1.style.opacity =1;
+	  					oHomeContent2.style.opacity =1;
+	  					setStyle(oHomeContent1,"transform","translate(0,0)")
+	  					setStyle(oHomeContent2,"transform","translate(0,0)");
+	  				},
+	  				outAn : function(){
+	  					oHomeContent1.style.opacity = 0;
+	  					oHomeContent2.style.opacity = 0;
+	  					setStyle(oHomeContent1,"transform","translate(0,-150px)");
+	  					setStyle(oHomeContent2,"transform","translate(0,100px)")
+	  				}
+	  			},
+	  			{
+	  				inAn : function(){
+	  					setStyle(oPlane1 , 'transform','translate(0,0)');
+						setStyle(oPlane2 , 'transform','translate(0,0)');
+						setStyle(oPlane3 , 'transform','translate(0,0)');
+	  				},
+	  				outAn : function(){
+	  					setStyle(oPlane1 , 'transform','translate(-200px,-200px)');
+						setStyle(oPlane2 , 'transform','translate(-200px,200px)');
+						setStyle(oPlane3 , 'transform','translate(200px,-200px)');
+	  				}
+	  			},
+	  			{
+	  				inAn : function(){
+	  					setStyle(oPencel1,"transform","translate(0,0)")
+	  					setStyle(oPencel2,"transform","translate(0,0)")
+	  					setStyle(oPencel3,"transform","translate(0,0)")
+	  				},
+	  				outAn : function(){
+	  					setStyle(oPencel1,"transform","translate(0,-200px)")
+	  					setStyle(oPencel2,"transform","translate(0,200px)")
+	  					setStyle(oPencel3,"transform","translate(0,200px)")
+	  				}
+	  			},
+	  			{
+	  				inAn : function(){
+						var aAboutImg = getByClass( oAboutContent , 'aboutImg' );
+						setStyle(aAboutImg[0],'transform','rotate(0)');
+						setStyle(aAboutImg[1],'transform','rotate(0)');
+					},
+					outAn : function(){
+						var aAboutImg = getByClass( oAboutContent , 'aboutImg' );
+						setStyle(aAboutImg[0],'transform','rotate(45deg)');
+						setStyle(aAboutImg[1],'transform','rotate(-45deg)');
+					}
+	  			},
+	  			{
+	  				inAn : function(){
+						var oTeamContent1 = getByClass(oTeamContent , 'teamContent1')[0];
+						var oTeamContent2 = getByClass(oTeamContent , 'teamContent2')[0];
+						oTeamContent1.style.opacity = 1;
+						oTeamContent2.style.opacity = 1;
+						setStyle(oTeamContent1,'transform','translate(0,0)');
+						setStyle(oTeamContent2,'transform','translate(0,0)');
+					},
+					outAn : function(){
+						var oTeamContent1 = getByClass(oTeamContent , 'teamContent1')[0];
+						var oTeamContent2 = getByClass(oTeamContent , 'teamContent2')[0];
+						oTeamContent1.style.opacity = 0;
+						oTeamContent2.style.opacity = 0;
+						setStyle(oTeamContent1,'transform','translate(-200px,0)');
+						setStyle(oTeamContent2,'transform','translate(200px,0)');
+					}
+	  			}
+	  		]
+	
+			for(var i=0;i<cjAnimate.length;i++){
+				cjAnimate[i].outAn();
+			}
+	  		function mouseWheel(){
+	  			var oBtn = true;
+	  			var timer = null;
+	  			if(oContent.addEventListener){
+	  				oContent.addEventListener("DOMMouseScroll",function(ev){
+	  					var ev = ev || window.event;
+	  					clearTimeout(timer)
+	  					timer = setTimeout(function(){
+	  						toChange(ev)
+	  					},200)
+	  				},false)
+	  			}
+	  			oContent.onmousewheel = function(ev){
+	  				var ev = ev || event;
+	  				clearTimeout(timer)
+	  				timer = setTimeout(function(){
+	  					toChange(ev)
+	  				},200);
+	  			}
+	  		}
+	  		function toChange(ev){
+	  			//alert(1)
+	  			if(ev.detail){
+	  				oBtn = ev.detail>0 ? true:false
+	  			}else{
+	  				oBtn = ev.wheelDelta < 0 ? true:false
+	  			}
+	  			if(oBtn){
+	  				if(iNow != aLiList.length-1){
+	  					iNow++;
+	  				}
+	  			}else{
+	  				if(iNow !=0){
+	  					iNow--;
+	  				}
+	  			}
+	  			toMove(iNow);
+	  			return false
+	  		}
+	  		function $(id){
+	  			return document.getElementById(id);
+	  		}
+	  		function viewWidth(){
+	  			return window.innerWidth || document.documentElement.clientWidth;
+	  		}
+	  		function viewHeight(){
+	  			return window.innerHeight || document.documentElement.clientHeight;
+	  		}
+	  		function getByClass(oParent,sClass){
+				var aElem = oParent.getElementsByTagName('*');
+				var arr = [];
+				for(var i=0;i<aElem.length;i++){
+					if( aElem[i].className == sClass ){
+						arr.push( aElem[i] );
+					}
+				}
+				return arr;
+			}
+			function setStyle(obj,attr,value){
+				obj.style[attr] = value;
+				obj.style['webkit'+attr.substring(0,1).toUpperCase() + attr.substring(1)] = value;
+				//console.log(obj.style['webkit'+attr.substring(0,1).toUpperCase() + attr.substring(1)])
+			}
+		 }
+  </script>
+ </head>
+ <body>
+	<div id="main">
+		<div id="loading">
+	    	<div></div>
+	        <div></div>
+        <span></span>
+    </div>
+		<div id="header">
+			<div id="headerMain">
+				<a href="javascript:;" id="logo">
+					<img src="img/logo.png">
+				</a>
+				<span id="music">
+					<audio id="audio1" src="img/曾经的你.mp3" preload="auto" loop></audio>
+				</span>
+				<ul id="nav">
+					<li>
+						<a href="javascript:;">
+							<div class="up"><img src="img/home_gruen.png"></div>
+							<div><img src="img/home.png"></div>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:;">
+							<div class="up">Excerise</div>
+							<div>Excerise</div>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:;">
+							<div class="up">Works</div>
+							<div>Works</div>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:;">
+							<div class="up">About</div>
+							<div>About</div>
+						</a>
+					</li>
+					<li>
+						<a href="javascript:;">
+							<div class="up">Team</div>
+							<div>Team</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div id="content">
+			<ul id="contentBtn">
+				<li class="active"></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+			<ul id="list">
+				<li id="home" class="liList">
+					<div class="divList" id="homeContent">
+						<ul class="homeContent1">
+							<li class="active">
+								<h1 class="commonTitle">JAVASCRIPT</h1>
+							</li>
+							<li>
+								<h1 class="commonTitle">JQUERY</h1>
+							</li>
+							<li>
+								<h1 class="commonTitle">CSS3.0</h1>
+							</li>
+							<li>
+								<h1 class="commonTitle">HTML5</h1>
+							</li>
+						</ul>
+						<ul class="homeContent2">
+							<li class="active"></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+				</li>
+				<li id="course" class="liList">
+					<div class="divList" id="courseContent">
+						<div class="courseContent1">
+							<h1 class="commonTitle">
+								<span>EINIGE</span><br/>
+								<span>UNSERER</span><br/>
+								<span>KUNDEN</span>
+							</h1>
+						</div>
+						<div class="courseContent2">
+							<p class="commonText">
+								Das Kundenvertrauen in unsere Kompetenz ist die notwendige Basis einer erfolgreichen Zusammenarbeit, gleichzeitig aber auch das größte Lob, das man uns entgegenbringen kann. <br/>
+								Diese und viele weitere große und kleine Kunden vertrauen uns seit Jahren, was uns stolz macht, und dafür sagen wir an dieser Stelle einfach mal.
+							</p>
+						</div>
+						<div class="courseContent3">
+						</div>
+						<div id="plane1"></div>
+						<div id="plane2"></div>
+						<div id="plane3"></div>
+					</div>
+				</li>
+				<li id="works" class="liList">
+					<div class="divList">
+						<div class="worksContent1">
+							<h1 class="commonTitle">
+								<span>EINBLICK</span><br>
+                           		<span>ERKENNTNIS</span><br>
+                           		<span>ERGEBNIS</span>
+							</h1>
+						</div>
+						<div class="worksContent2">
+							<div class="worksImgParent">
+								<img class="worksImg" src="img/worksimg1.jpg">
+								<div class="worksImgMark">
+									<span>hellow World hellow World hellow word</span>
+									<div></div>
+								</div>
+							</div>
+							<div class="worksImgParent">
+								<img class="worksImg" src="img/worksimg2.jpg">
+								<div class="worksImgMark">
+									<span>hellow javascript hellow javascript hellow javascript hellow javascript</span>
+									<div></div>
+								</div>
+							</div>
+							<div class="worksImgParent">
+								<img class="worksImg" src="img/worksimg3.jpg">
+								<div class="worksImgMark">
+									<span>hellow 前端 hellow 前端 hellow 前端</span>
+									<div></div>
+								</div>
+							</div>
+							<div class="worksImgParent">
+								<img class="worksImg" src="img/worksimg4.jpg">
+								<div class="worksImgMark">
+									<span>测试文字，哈哈哈啊司法所地方测试文字，哈哈哈啊司法所地方</span>
+									<div></div>
+								</div>
+							</div>
+						</div>
+						<div class="worksContent3"></div>
+						<div id="pencel1"></div>
+						<div id="pencel2"></div>
+						<div id="pencel3"></div>
+					</div>
+				</li>
+				<li id="about" class="liList">
+					<div class="divList" id="aboutContent">
+						<div class="aboutContent1">
+							<h1 class="commonTitle">
+								<span>DIE</span><br/>
+								<span>SPEZIELLE</span><br/>
+								<span>VIELFALT</span>
+							</h1>
+						</div>
+						<div class="aboutContent2">
+							<p class="commonText">Der bunte Medienmix ist die Faszination die uns antreibt und das, was man an uns schätzt. Von A bis Z und von vorne bis hinten nehmen wir Ihr Projekt unter unsere Fittiche und lassen es zu etwas Großartigem heranwachsen.
+							</p>
+						</div>
+						<div class="aboutContent3">
+							<div class="aboutImg">
+								<div style="background:url(img/about2.jpg) no-repeat;" class="divImg"></div>
+								<ul data-src="img/about1.jpg">
+									<li></li>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+							<div class="aboutImg">
+								<div style="background:url(img/about4.jpg) no-repeat;" class="divImg"></div>
+								<ul data-src="img/about3.jpg">
+									<li></li>
+									<li></li>
+									<li></li>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="aboutLine"></div>
+				</li>
+				<li id="team" class="liList">
+					<div class="divList" id="teamContent">
+						<div class="teamContent1">
+							<h1 class="commonTitle">
+								<span>WIR SIND</span><br>
+								<span>VOXELAIR</span>
+							</h1>
+						</div>
+						<div class="teamContent2">
+							<p class="commonText">
+									Wir sind seit 2002 eine Full-Service-Werbeagentur mit Stammsitz in Heimsheim, zwischen Stuttgart und Karlsruhe. 
+		                            <br>
+		                            Über 60 Jahre Erfahrung vereinen das gesamte VoxelAir-Team. Dabei hat jedes Voxel neben professionellem Allroundwissen auch sein ganz spezielles Gebiet, um selbst die individuellsten Kundenwünsche schnell und kompetent umzusetzen. 
+							</p>
+						</div>
+						<div class="teamContent3"></div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+ </body>
+</html>
